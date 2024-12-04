@@ -12,6 +12,9 @@ def interface_icons(root):
     # SERVICE BUTTON
     root.ui.buttonService.setIcon(qta.icon('mdi.alpha-s-box', color="#ffffff"))
 
+    # Machine info
+    root.ui.buttonMachineInfo.setIcon(qta.icon('mdi.laptop-mac', color="#ffffff"))
+
     # CLOSE CARD BUTTON
     root.ui.buttonCloseCard.setIcon(qta.icon('ri.close-fill', color="#ffffff"))
     root.ui.buttonCloseCard.clicked.connect(root.ui.dockWidget.close)

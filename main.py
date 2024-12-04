@@ -105,9 +105,23 @@ class Interface(QtWidgets.QMainWindow):
             self.clear_details_form(self.ui.formLayout)
             for count, (key, value) in enumerate(details.items(), start=1):
                 key_label = self.create_label(self.ui.scrollAreaWidgetContents, f"key_{key}")
-                value_label = self.create_label(self.ui.scrollAreaWidgetContents, f"value_{count}")
                 key_label.setText(key)
+                if key == 'Connections':
+                    if len(value) > 0:
+                        value_label = self.create_label(self.ui.scrollAreaWidgetContents, f"value_{count}", tooltip=True)
+
+                        headers = ['family', 'from', 'to', 'status', 'type']
+                        data = [[con.family, con.laddr, con.raddr, con.status, con.type] for con in value]
+                        # Using dictionary comprehension
+                        # result will be a list of dictionaries
+                        result = [{headers[i]: row[i] for i in range(len(headers))} for row in data]
+                        value = result
+                        value_label.setToolTip(f"{value}")
+                else:
+                    value_label = self.create_label(self.ui.scrollAreaWidgetContents, f"value_{count}")
+
                 value_label.setText(str(value))
+
                 self.ui.formLayout.setWidget(count, QtWidgets.QFormLayout.LabelRole, key_label)
                 self.ui.formLayout.setWidget(count, QtWidgets.QFormLayout.FieldRole, value_label)
 
@@ -124,15 +138,18 @@ class Interface(QtWidgets.QMainWindow):
         return self.ui.processTableWidget.item(self.ui.processTableWidget.currentRow(), 0).text()
 
     @staticmethod
-    def create_label(parent, label_name):
+    def create_label(parent, label_name, tooltip=False):
         """Create a styled QLabel."""
         label = QtWidgets.QLabel(parent)
+
         label.setObjectName(label_name)
         label.setFont(QtGui.QFont("Monaco", 12))
         label.setWordWrap(True)
         label.setStyleSheet(
             "border: 1px solid rgb(64, 66, 72); border-top:none; border-left: none; border-right: none"
         )
+        if tooltip:
+            label.setToolTip('Connections')
         return label
 
     @staticmethod

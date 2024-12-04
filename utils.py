@@ -45,11 +45,12 @@ class ProcessManager:
         :param username: The username of the process owner.
         :return: List of tuples representing processes or an empty list if none found.
         """
-        return [
-            (p['pid'], p['name'], p['status'], p['username'], p['exe'])
-            for p in psutil.process_iter(attrs=self.params)
-            if username.lower() == p['username'].lower()
-        ]
+        ps = [p.info for p in psutil.process_iter(attrs=self.params) if username in p.info['username']]
+        if len(ps) == 0:
+            return False
+        else:
+            rows = [(p['pid'], p['name'], p['status'], p['username'], p['exe']) for p in ps]
+        return rows
 
     def get_process_details(self, pid: int):
         """
@@ -60,7 +61,8 @@ class ProcessManager:
         """
         try:
             process = psutil.Process(pid)
-            # if process.net_connections()
+            # connection =
+            conn = process.connections()
             return {
                 'PID': pid,
                 'Created': datetime.fromtimestamp(process.create_time()).strftime('%Y-%m-%d %H:%M'),
@@ -72,7 +74,7 @@ class ProcessManager:
                 'CWD': process.cwd(),
                 'Owner': process.username(),
                 'CPU Percent': process.cpu_percent(),
-                'Connections': 'Yes' if process.net_connections() else 'No',
+                'Connections': conn,
             }
         except psutil.AccessDenied:
             return "Permission Error"
@@ -128,3 +130,4 @@ if __name__ == '__main__':
     # print(pm.get_process_details(1))
     # print(pm.get_process_by_name('python'))
     # print(pm.get_process_details(pid=28472,))
+    print(pm.get_process_by_user('root'))

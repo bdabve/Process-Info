@@ -43,9 +43,10 @@ You can install the necessary dependencies using the `requirements.txt` file.
 
 After installing the dependencies, you can run the application with the following command:
 
-    ```bash
-    python main.py
-    ```
+```bash
+python main.py
+```
+
 ## Example Screenshot
 
 

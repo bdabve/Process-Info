@@ -52,6 +52,43 @@ class ProcessManager:
             rows = [(p['pid'], p['name'], p['status'], p['username'], p['exe']) for p in ps]
         return rows
 
+    def get_process_connections(self, pid):
+        """
+        Get connections for a process by its PID.
+        Args:
+            pid (int): Process ID.
+        Returns:
+            list: A list where the first element is the headers,
+                  followed by rows of connection details.
+                  Returns an empty list if no connections are found.
+        """
+        try:
+            process = psutil.Process(pid)
+            conns = process.connections()
+
+            if conns:
+                # Extract headers and data
+                return [
+                    [
+                        conn.fd,
+                        repr(conn.family),
+                        repr(conn.type),
+                        f"{conn.laddr.ip}:{conn.laddr.port}",
+                        f"{conn.raddr.ip}:{conn.raddr.port}" if conn.raddr else "N/A",
+                        conn.status,
+                    ]
+                    for conn in conns
+                ]
+            else:
+                return []
+
+        except psutil.NoSuchProcess:
+            print(f"No process found with PID {pid}.")
+            return []
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return []
+
     def get_process_details(self, pid: int):
         """
         Retrieve detailed information for a process by its PID.
@@ -61,25 +98,26 @@ class ProcessManager:
         """
         try:
             process = psutil.Process(pid)
-            # connection =
-            conn = process.connections()
             return {
-                'PID': pid,
                 'Created': datetime.fromtimestamp(process.create_time()).strftime('%Y-%m-%d %H:%M'),
-                'Parent': process.ppid(),
                 'Name': process.name(),
-                'Executable': process.exe(),
-                'CMDLine': '\n'.join(process.cmdline()),
+                'PID': pid,
+                'Parent': process.ppid(),
                 'Status': process.status(),
-                'CWD': process.cwd(),
                 'Owner': process.username(),
                 'CPU Percent': process.cpu_percent(),
-                'Connections': conn,
+                'Mem Percent': process.memory_percent(),
+                #
+                'CMDLine': '\n'.join(process.cmdline()),
+                'CWD': process.cwd(),
+                'Executable': process.exe(),
+                'Connections': 'Has Connections' if len(process.net_connections()) > 0 else 'No Connections',
             }
         except psutil.AccessDenied:
             return "Permission Error"
 
 
+# ==========================================================================================
 def get_column_value(table: QtWidgets.QTableWidget, column: int) -> str:
     """
     Get the value from a specific column of the selected row in a QTableWidget.

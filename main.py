@@ -13,6 +13,9 @@ class Interface(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Set up the app icon
+        self.setWindowIcon(QtGui.QIcon("appicon.png"))
+
         # Set up UI font and icons
         self.font = QtGui.QFont()
         self.font.setFamily("Technology")
@@ -61,7 +64,7 @@ class Interface(QtWidgets.QMainWindow):
         self.all_process()
 
     def display_process(self, rows):
-        """Display processes in the table widget."""
+        """Display processes in the process table widget."""
         headers = ['PID', 'NAME', 'STATUS', 'USER', 'EXECUTABLE']
         display_table_records(self.ui.processTableWidget, rows, headers)
         self.update_count_label(rows)
@@ -84,7 +87,11 @@ class Interface(QtWidgets.QMainWindow):
     def process_by_user(self):
         """Filter processes by the selected user."""
         username = self.ui.processByUser.currentText()
-        processes = self.process_manager.get_process_by_user(username) if username != 'All' else self.process_manager.get_all_processes()
+        if username != 'All':
+            processes = self.process_manager.get_all_processes()
+        else:
+            processes = self.process_manager.get_process_by_user(username)
+
         if processes:
             self.display_process(processes)
         else:
@@ -92,34 +99,22 @@ class Interface(QtWidgets.QMainWindow):
 
     def process_details(self):
         """Show details for a selected process."""
-        self.ui.labelError.clear()
         try:
-            pid = int(self.get_selected_pid())
-            details = self.process_manager.get_process_details(pid)
+            self.pid = int(self.get_selected_pid())
+            details = self.process_manager.get_process_details(self.pid)
 
             if details == "Permission Error":
                 self.ui.labelError.setText("You must have root permissions.")
                 self.ui.dockWidget.close()
                 return
 
+            self.ui.labelError.clear()
             self.clear_details_form(self.ui.formLayout)
             for count, (key, value) in enumerate(details.items(), start=1):
                 key_label = self.create_label(self.ui.scrollAreaWidgetContents, f"key_{key}")
                 key_label.setText(key)
-                if key == 'Connections':
-                    if len(value) > 0:
-                        value_label = self.create_label(self.ui.scrollAreaWidgetContents, f"value_{count}", tooltip=True)
 
-                        headers = ['family', 'from', 'to', 'status', 'type']
-                        data = [[con.family, con.laddr, con.raddr, con.status, con.type] for con in value]
-                        # Using dictionary comprehension
-                        # result will be a list of dictionaries
-                        result = [{headers[i]: row[i] for i in range(len(headers))} for row in data]
-                        value = result
-                        value_label.setToolTip(f"{value}")
-                else:
-                    value_label = self.create_label(self.ui.scrollAreaWidgetContents, f"value_{count}")
-
+                value_label = self.create_label(self.ui.scrollAreaWidgetContents, f"value_{count}")
                 value_label.setText(str(value))
 
                 self.ui.formLayout.setWidget(count, QtWidgets.QFormLayout.LabelRole, key_label)
@@ -129,16 +124,24 @@ class Interface(QtWidgets.QMainWindow):
         except ValueError:
             self.ui.labelError.setText("Invalid PID selected.")
 
+    def process_more_details(self):
+        """
+        This will display a new dialog with all information about a process
+        """
+        headers = ['FD', 'Family', 'Type', 'Local Address', 'Remote Address', 'Status']
+        rows = self.process_manager.get_process_connections(self.pid)
+        display_table_records(self.ui.processTableWidget, rows, headers)
+
     def handle_process(self, action):
         """Handle process actions (terminate, suspend, resume)."""
-        print(f"Handle Process: {action}")
+        print(f"Handle Process({self.pid}): {action}")
 
     def get_selected_pid(self):
         """Retrieve the PID of the selected row in the table."""
         return self.ui.processTableWidget.item(self.ui.processTableWidget.currentRow(), 0).text()
 
     @staticmethod
-    def create_label(parent, label_name, tooltip=False):
+    def create_label(parent, label_name):
         """Create a styled QLabel."""
         label = QtWidgets.QLabel(parent)
 
@@ -148,8 +151,6 @@ class Interface(QtWidgets.QMainWindow):
         label.setStyleSheet(
             "border: 1px solid rgb(64, 66, 72); border-top:none; border-left: none; border-right: none"
         )
-        if tooltip:
-            label.setToolTip('Connections')
         return label
 
     @staticmethod

@@ -14,10 +14,22 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1063, 640)
+        MainWindow.resize(1154, 640)
         MainWindow.setStyleSheet("#mainWidget {\n"
 "    border-radius: 5px;\n"
 "    background-color: #0f0e13;\n"
+"}\n"
+"\n"
+"/* ------- Global ---------*/\n"
+"\n"
+"QLabel {\n"
+"    font: italic 12pt \"Droid Sans Fallback\";\n"
+"    color: #ffffff;\n"
+"}\n"
+"\n"
+"QMainWindow::separator {\n"
+"    width: 3px;\n"
+"    background-color: rgb(64, 66, 72);\n"
 "}\n"
 "\n"
 "QStatusBar {\n"
@@ -26,7 +38,6 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QStatusBar QLabel {\n"
-"    /*border: 3px solid white; */\n"
 "    color: #ffffff;\n"
 "}\n"
 "\n"
@@ -34,6 +45,16 @@ class Ui_MainWindow(object):
 "    border: 1px solid red;\n"
 "    border-radius: 3px;\n"
 "}\n"
+"\n"
+"QPushButton {        \n"
+"    \n"
+"    font: 13pt \"Droid Sans Fallback\";\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    font: 87 13pt \"Roboto\";\n"
+"}\n"
+"\n"
 "/* ---------| PROCESS PAGE |--------- */\n"
 "#processPage {\n"
 "    background-color: #0f0e13;\n"
@@ -42,15 +63,21 @@ class Ui_MainWindow(object):
 "#searchFrame {\n"
 "    background: transparent;\n"
 "    border: 1px solid rgb(64, 66, 72);\n"
-"    border-radius: 7px;\n"
+"    border-top: none;\n"
+"    border-left: none;\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"#searchFrame:hover {\n"
+"    border-bottom: 2px solid rgb(178, 178, 178);\n"
 "}\n"
 "\n"
 "#lineEditSearch {\n"
 "    background: transparent;\n"
 "    color: #ffffff;\n"
 "    border: none;\n"
-"    border-right: 1px solid rgb(64, 66, 72);\n"
 "}\n"
+"\n"
 "#searchButtonIcon {\n"
 "    background: transparent;\n"
 "    border: none;\n"
@@ -59,16 +86,9 @@ class Ui_MainWindow(object):
 "    color: rgb(192, 28, 40)\n"
 "}\n"
 "\n"
-"/* ---------| DETAILS FRAME |--------- */\n"
-"\n"
-"QDockWidget {\n"
-"    \n"
-"}\n"
-"\n"
-"QMainWindow::separator {\n"
-"    width: 3px;\n"
-"    background-color: rgb(64, 66, 72);\n"
-"}\n"
+"/* ****************\n"
+"        DETAILS FRAME  = QDockWidget\n"
+"*************************************/\n"
 "\n"
 "#dockWidgetContents,  #rightFrame {\n"
 "    background-color: #23242a;\n"
@@ -93,8 +113,7 @@ class Ui_MainWindow(object):
 "    border: 2px solid rgb(64, 66, 72);\n"
 "    border-radius: 5px;\n"
 "    color: #ffffff;\n"
-"    font: italic 13pt \"Droid Sans Fallback\";;\n"
-"    padding: 4px 10px;\n"
+"    padding: 5px 12px;\n"
 "}\n"
 "\n"
 "#detailFrameOption QPushButton:pressed {\n"
@@ -142,12 +161,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#leftMenuFrame QPushButton {\n"
-"    font: italic 13pt \"Droid Sans Fallback\";\n"
 "    background-color: transparent;\n"
-"    padding: 15px 20px;\n"
+"    padding: 12px;\n"
 "    color: #ffffff;\n"
 "    border: none;\n"
-"    border-radius: 5px;\n"
+"    border-radius: 13px;\n"
+"    text-align: left;\n"
 "}\n"
 "\n"
 "#leftMenuFrame QPushButton:hover {\n"
@@ -168,20 +187,15 @@ class Ui_MainWindow(object):
 "    border-radius: 42px;\n"
 "    padding: 5px;\n"
 "}\n"
-"/* ------- Global ---------*/\n"
 "\n"
-"QLabel {\n"
-"    font: italic 12pt \"Droid Sans Fallback\";\n"
-"    color: #ffffff;\n"
-"}\n"
 "/*----------------> QComboBox <---------------------*/\n"
 "\n"
 "QComboBox {\n"
-"    font: italic 12pt \"Droid Sans Fallback\";\n"
-"    background-color: #353b48;\n"
+"    font: 87 12pt \"Roboto\";\n"
+"    background-color: transparent;\n"
 "    color: #ffffff;\n"
 "    border-radius: 5px;\n"
-"    border: 2px solid rgb(64, 66, 72);\n"
+"    border: 1px solid rgb(64, 66, 72);    \n"
 "    padding: 5px;\n"
 "    padding-left: 10px;\n"
 "    combobox-popup: 0;\n"
@@ -194,24 +208,27 @@ class Ui_MainWindow(object):
 "    subcontrol-position: top right;\n"
 "    width: 25px; \n"
 "    border-left-width: 3px;\n"
-"    border-left-color: rgba(39, 44, 54, 150);\n"
+"    border-left-color: rgb(64, 66, 72);\n"
 "    border-left-style: solid;\n"
 "    border-top-right-radius: 3px;\n"
-"    border-bottom-right-radius: 3px;    \n"
-"    background-image: (:/icons/icurlons/cil-arrow-bottom.png);\n"
+"    border-bottom-right-radius: 3px;\n"
+"    background-image: url(:/icons/icons/cil-arrow-bottom.png);\n"
 "    background-position: center;\n"
 "    background-repeat: no-reperat;\n"
 " }\n"
 "\n"
 "QComboBox QAbstractItemView {\n"
 "    color: #4b7bec; /*rgb(255, 121, 198);    */\n"
-"    background-color: rgb(33, 37, 43);\n"
-"    padding: 5px;\n"
+"    background-color: #0f0e13;\n"
+"    padding: 10px 7px;\n"
 "    selection-background-color: rgb(39, 44, 54);\n"
+"    border: 2px solid rgb(64, 71, 88);\n"
+"    border-top: none;\n"
+"    border-radius: 3px;\n"
 "}\n"
 "\n"
 "QComboBox QAbstractItemView::item {\n"
-"    padding: 5px 10px;\n"
+"    padding: 12px;\n"
 "}\n"
 "\n"
 "/*----------------> QTableWidget <---------------------*/\n"
@@ -222,11 +239,10 @@ class Ui_MainWindow(object):
 "    color: #eeeeee;\n"
 "    gridline-color: #2c2d33;\n"
 "    border-radius: 2;\n"
-"    font: italic 13pt \"Droid Sans Fallback\";;\n"
+"    font: italic 12pt \"Droid Sans Fallback\";\n"
 "}\n"
 "\n"
 "QTableWidget::item {\n"
-"    font-size: 11pt;\n"
 "    color: #eeeeee;\n"
 "    /*padding: 6 0 6 -10;*/\n"
 "    padding-left: 5px;\n"
@@ -243,7 +259,7 @@ class Ui_MainWindow(object):
 "    border-width: 1 1 1 0;\n"
 "    border-style: solid;\n"
 "    border-color: #1b252f;\n"
-"    font: 12pt \"Ubuntu Mono\";\n"
+"    font: 75 12pt \"Droid Sans Fallback\";\n"
 "    color: #00d4ff;\n"
 "    padding-left:10;\n"
 "}\n"
@@ -426,7 +442,7 @@ class Ui_MainWindow(object):
         font.setFamily("Droid Sans Fallback")
         font.setPointSize(12)
         font.setBold(False)
-        font.setItalic(True)
+        font.setItalic(False)
         font.setWeight(50)
         self.buttonUsername.setFont(font)
         self.buttonUsername.setStyleSheet("")
@@ -436,7 +452,7 @@ class Ui_MainWindow(object):
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_2.addItem(spacerItem)
         self.buttonProcess = QtWidgets.QPushButton(self.leftMenuFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonProcess.sizePolicy().hasHeightForWidth())
@@ -445,16 +461,16 @@ class Ui_MainWindow(object):
         font.setFamily("Droid Sans Fallback")
         font.setPointSize(13)
         font.setBold(False)
-        font.setItalic(True)
+        font.setItalic(False)
         font.setWeight(50)
         self.buttonProcess.setFont(font)
         self.buttonProcess.setIconSize(QtCore.QSize(30, 30))
         self.buttonProcess.setCheckable(True)
         self.buttonProcess.setChecked(False)
         self.buttonProcess.setObjectName("buttonProcess")
-        self.verticalLayout_2.addWidget(self.buttonProcess, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_2.addWidget(self.buttonProcess)
         self.buttonService = QtWidgets.QPushButton(self.leftMenuFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonService.sizePolicy().hasHeightForWidth())
@@ -463,23 +479,23 @@ class Ui_MainWindow(object):
         font.setFamily("Droid Sans Fallback")
         font.setPointSize(13)
         font.setBold(False)
-        font.setItalic(True)
+        font.setItalic(False)
         font.setWeight(50)
         self.buttonService.setFont(font)
         self.buttonService.setIconSize(QtCore.QSize(30, 30))
         self.buttonService.setCheckable(True)
         self.buttonService.setChecked(False)
         self.buttonService.setObjectName("buttonService")
-        self.verticalLayout_2.addWidget(self.buttonService, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_2.addWidget(self.buttonService)
         self.buttonMachineInfo = QtWidgets.QPushButton(self.leftMenuFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonMachineInfo.sizePolicy().hasHeightForWidth())
         self.buttonMachineInfo.setSizePolicy(sizePolicy)
         self.buttonMachineInfo.setIconSize(QtCore.QSize(30, 30))
         self.buttonMachineInfo.setObjectName("buttonMachineInfo")
-        self.verticalLayout_2.addWidget(self.buttonMachineInfo, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_2.addWidget(self.buttonMachineInfo)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_2.addItem(spacerItem1)
         self.horizontalLayout.addWidget(self.leftMenuFrame)
@@ -498,9 +514,52 @@ class Ui_MainWindow(object):
         self.frame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setSpacing(10)
+        self.gridLayout.setObjectName("gridLayout")
+        self.searchFrame = QtWidgets.QFrame(self.frame)
+        self.searchFrame.setMinimumSize(QtCore.QSize(200, 0))
+        self.searchFrame.setMaximumSize(QtCore.QSize(350, 16777215))
+        self.searchFrame.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.searchFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.searchFrame.setObjectName("searchFrame")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.searchFrame)
+        self.horizontalLayout_4.setContentsMargins(5, 2, 5, 2)
+        self.horizontalLayout_4.setSpacing(2)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.searchButtonIcon = QtWidgets.QPushButton(self.searchFrame)
+        self.searchButtonIcon.setMinimumSize(QtCore.QSize(25, 30))
+        self.searchButtonIcon.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/cil-magnifying-glass.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.searchButtonIcon.setIcon(icon)
+        self.searchButtonIcon.setIconSize(QtCore.QSize(25, 25))
+        self.searchButtonIcon.setObjectName("searchButtonIcon")
+        self.horizontalLayout_4.addWidget(self.searchButtonIcon)
+        self.lineEditSearch = QtWidgets.QLineEdit(self.searchFrame)
+        self.lineEditSearch.setMinimumSize(QtCore.QSize(30, 30))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(13)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(11)
+        self.lineEditSearch.setFont(font)
+        self.lineEditSearch.setObjectName("lineEditSearch")
+        self.horizontalLayout_4.addWidget(self.lineEditSearch)
+        self.gridLayout.addWidget(self.searchFrame, 4, 3, 1, 1)
+        self.labelError = QtWidgets.QLabel(self.frame)
+        self.labelError.setMinimumSize(QtCore.QSize(0, 36))
+        font = QtGui.QFont()
+        font.setFamily("Droid Sans Fallback")
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(True)
+        font.setWeight(50)
+        self.labelError.setFont(font)
+        self.labelError.setObjectName("labelError")
+        self.gridLayout.addWidget(self.labelError, 1, 0, 1, 3)
         self.labelProcessCount = QtWidgets.QLabel(self.frame)
         self.labelProcessCount.setMinimumSize(QtCore.QSize(100, 0))
         font = QtGui.QFont()
@@ -510,101 +569,25 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(50)
         self.labelProcessCount.setFont(font)
-        self.labelProcessCount.setText("")
         self.labelProcessCount.setObjectName("labelProcessCount")
-        self.horizontalLayout_3.addWidget(self.labelProcessCount)
-        spacerItem2 = QtWidgets.QSpacerItem(234, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem2)
-        self.searchFrame = QtWidgets.QFrame(self.frame)
-        self.searchFrame.setMinimumSize(QtCore.QSize(260, 0))
-        self.searchFrame.setMaximumSize(QtCore.QSize(350, 16777215))
-        self.searchFrame.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.searchFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.searchFrame.setObjectName("searchFrame")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.searchFrame)
-        self.horizontalLayout_4.setContentsMargins(5, 2, 5, 2)
-        self.horizontalLayout_4.setSpacing(2)
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.lineEditSearch = QtWidgets.QLineEdit(self.searchFrame)
-        self.lineEditSearch.setMinimumSize(QtCore.QSize(30, 30))
-        font = QtGui.QFont()
-        font.setFamily("Ubuntu Sans")
-        font.setPointSize(14)
-        self.lineEditSearch.setFont(font)
-        self.lineEditSearch.setObjectName("lineEditSearch")
-        self.horizontalLayout_4.addWidget(self.lineEditSearch)
-        self.searchButtonIcon = QtWidgets.QPushButton(self.searchFrame)
-        self.searchButtonIcon.setMinimumSize(QtCore.QSize(25, 30))
-        self.searchButtonIcon.setText("")
-        self.searchButtonIcon.setIconSize(QtCore.QSize(25, 25))
-        self.searchButtonIcon.setObjectName("searchButtonIcon")
-        self.horizontalLayout_4.addWidget(self.searchButtonIcon)
-        self.horizontalLayout_3.addWidget(self.searchFrame)
-        self.verticalLayout_4.addWidget(self.frame)
-        self.frame_3 = QtWidgets.QFrame(self.processPage)
-        self.frame_3.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.frame_3)
-        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_6.setSpacing(6)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.frame_4 = QtWidgets.QFrame(self.frame_3)
-        self.frame_4.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_4.setObjectName("frame_4")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frame_4)
-        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_7.setSpacing(12)
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem3)
-        self.label_2 = QtWidgets.QLabel(self.frame_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
-        self.label_2.setMaximumSize(QtCore.QSize(125, 16777215))
-        font = QtGui.QFont()
-        font.setFamily("Droid Sans Fallback")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(True)
-        font.setWeight(50)
-        self.label_2.setFont(font)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_7.addWidget(self.label_2)
-        self.processByUser = QtWidgets.QComboBox(self.frame_4)
-        self.processByUser.setMinimumSize(QtCore.QSize(200, 0))
+        self.gridLayout.addWidget(self.labelProcessCount, 4, 0, 1, 2)
+        self.processByUser = QtWidgets.QComboBox(self.frame)
+        self.processByUser.setMinimumSize(QtCore.QSize(0, 0))
         self.processByUser.setMaximumSize(QtCore.QSize(350, 16777215))
         font = QtGui.QFont()
-        font.setFamily("Droid Sans Fallback")
+        font.setFamily("Roboto")
         font.setPointSize(12)
         font.setBold(False)
-        font.setItalic(True)
-        font.setWeight(50)
+        font.setItalic(False)
+        font.setWeight(11)
         self.processByUser.setFont(font)
         self.processByUser.setObjectName("processByUser")
         self.processByUser.addItem("")
         self.processByUser.addItem("")
         self.processByUser.addItem("")
         self.processByUser.addItem("")
-        self.horizontalLayout_7.addWidget(self.processByUser)
-        self.horizontalLayout_6.addWidget(self.frame_4)
-        self.verticalLayout_4.addWidget(self.frame_3)
-        self.labelError = QtWidgets.QLabel(self.processPage)
-        self.labelError.setMinimumSize(QtCore.QSize(0, 36))
-        font = QtGui.QFont()
-        font.setFamily("Droid Sans Fallback")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(True)
-        font.setWeight(50)
-        self.labelError.setFont(font)
-        self.labelError.setText("")
-        self.labelError.setObjectName("labelError")
-        self.verticalLayout_4.addWidget(self.labelError)
+        self.gridLayout.addWidget(self.processByUser, 4, 2, 1, 1)
+        self.verticalLayout_4.addWidget(self.frame)
         self.processTableWidget = QtWidgets.QTableWidget(self.processPage)
         self.processTableWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.processTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -646,7 +629,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.rightFrame = QtWidgets.QFrame(self.dockWidgetContents)
-        self.rightFrame.setMinimumSize(QtCore.QSize(0, 0))
+        self.rightFrame.setMinimumSize(QtCore.QSize(300, 0))
         self.rightFrame.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.rightFrame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.rightFrame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -682,7 +665,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.label)
         self.verticalLayout_3.addWidget(self.titleFrame)
         self.detailFrameOption = QtWidgets.QFrame(self.rightFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.detailFrameOption.sizePolicy().hasHeightForWidth())
@@ -693,25 +676,61 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.detailFrameOption)
         self.horizontalLayout_5.setContentsMargins(5, -1, 6, -1)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.buttonProcessMoreInfo = QtWidgets.QPushButton(self.detailFrameOption)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.buttonProcessMoreInfo.sizePolicy().hasHeightForWidth())
+        self.buttonProcessMoreInfo.setSizePolicy(sizePolicy)
+        self.buttonProcessMoreInfo.setMinimumSize(QtCore.QSize(52, 40))
+        self.buttonProcessMoreInfo.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonProcessMoreInfo.setText("")
+        self.buttonProcessMoreInfo.setIconSize(QtCore.QSize(25, 25))
+        self.buttonProcessMoreInfo.setObjectName("buttonProcessMoreInfo")
+        self.horizontalLayout_5.addWidget(self.buttonProcessMoreInfo)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem2)
         self.buttonTerminate = QtWidgets.QPushButton(self.detailFrameOption)
-        self.buttonTerminate.setIconSize(QtCore.QSize(23, 23))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.buttonTerminate.sizePolicy().hasHeightForWidth())
+        self.buttonTerminate.setSizePolicy(sizePolicy)
+        self.buttonTerminate.setMinimumSize(QtCore.QSize(30, 30))
+        self.buttonTerminate.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonTerminate.setText("")
+        self.buttonTerminate.setIconSize(QtCore.QSize(25, 25))
         self.buttonTerminate.setObjectName("buttonTerminate")
         self.horizontalLayout_5.addWidget(self.buttonTerminate)
         self.buttonSuspend = QtWidgets.QPushButton(self.detailFrameOption)
-        self.buttonSuspend.setIconSize(QtCore.QSize(23, 23))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.buttonSuspend.sizePolicy().hasHeightForWidth())
+        self.buttonSuspend.setSizePolicy(sizePolicy)
+        self.buttonSuspend.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonSuspend.setText("")
+        self.buttonSuspend.setIconSize(QtCore.QSize(25, 25))
         self.buttonSuspend.setObjectName("buttonSuspend")
         self.horizontalLayout_5.addWidget(self.buttonSuspend)
         self.buttonResume = QtWidgets.QPushButton(self.detailFrameOption)
-        self.buttonResume.setIconSize(QtCore.QSize(23, 23))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.buttonResume.sizePolicy().hasHeightForWidth())
+        self.buttonResume.setSizePolicy(sizePolicy)
+        self.buttonResume.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonResume.setText("")
+        self.buttonResume.setIconSize(QtCore.QSize(25, 25))
         self.buttonResume.setObjectName("buttonResume")
         self.horizontalLayout_5.addWidget(self.buttonResume)
-        self.verticalLayout_3.addWidget(self.detailFrameOption, 0, QtCore.Qt.AlignRight)
+        self.verticalLayout_3.addWidget(self.detailFrameOption)
         self.scrollArea = QtWidgets.QScrollArea(self.rightFrame)
         self.scrollArea.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 400, 470))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 300, 466))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setContentsMargins(5, -1, 5, -1)
@@ -748,8 +767,10 @@ class Ui_MainWindow(object):
         self.buttonMachineInfo.setText(_translate("MainWindow", "Machine Info"))
         self.lineEditSearch.setToolTip(_translate("MainWindow", "Search process by Name or PID"))
         self.lineEditSearch.setPlaceholderText(_translate("MainWindow", "Search"))
-        self.label_2.setText(_translate("MainWindow", "Process By User"))
+        self.labelError.setText(_translate("MainWindow", "Error Label"))
+        self.labelProcessCount.setText(_translate("MainWindow", "Count"))
         self.processByUser.setStatusTip(_translate("MainWindow", "Process By Owner"))
+        self.processByUser.setPlaceholderText(_translate("MainWindow", "Process By Username"))
         self.processByUser.setItemText(0, _translate("MainWindow", "New Item"))
         self.processByUser.setItemText(1, _translate("MainWindow", "New Item"))
         self.processByUser.setItemText(2, _translate("MainWindow", "New Item"))
@@ -762,7 +783,10 @@ class Ui_MainWindow(object):
         item = self.processTableWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "STATUS"))
         self.label.setText(_translate("MainWindow", "Details"))
-        self.buttonTerminate.setText(_translate("MainWindow", "Terminate"))
-        self.buttonSuspend.setText(_translate("MainWindow", "Suspend"))
-        self.buttonResume.setText(_translate("MainWindow", "Resume"))
+        self.buttonTerminate.setToolTip(_translate("MainWindow", "Terminate "))
+        self.buttonTerminate.setStatusTip(_translate("MainWindow", "Terminate "))
+        self.buttonSuspend.setToolTip(_translate("MainWindow", "Suspend"))
+        self.buttonSuspend.setStatusTip(_translate("MainWindow", "Suspend"))
+        self.buttonResume.setToolTip(_translate("MainWindow", "Resume"))
+        self.buttonResume.setStatusTip(_translate("MainWindow", "Resume"))
 import resource_rc

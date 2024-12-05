@@ -14,10 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1154, 640)
+        MainWindow.resize(1147, 640)
         MainWindow.setStyleSheet("#mainWidget {\n"
-"    border-radius: 5px;\n"
-"    background-color: #0f0e13;\n"
+"    background-color: #2c2c2c;\n"
 "}\n"
 "\n"
 "/* ------- Global ---------*/\n"
@@ -28,8 +27,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QMainWindow::separator {\n"
-"    width: 3px;\n"
-"    background-color: rgb(64, 66, 72);\n"
+"    width: 2px;\n"
+"    background-color: #4c4c4c;\n"
 "}\n"
 "\n"
 "QStatusBar {\n"
@@ -52,12 +51,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QLineEdit {\n"
-"    font: 87 13pt \"Roboto\";\n"
+"    font: italic 12pt \"Droid Sans Fallback\";\n"
 "}\n"
 "\n"
 "/* ---------| PROCESS PAGE |--------- */\n"
 "#processPage {\n"
-"    background-color: #0f0e13;\n"
+"    background-color: transparent;\n"
 "}\n"
 "\n"
 "#searchFrame {\n"
@@ -77,7 +76,12 @@ class Ui_MainWindow(object):
 "    color: #ffffff;\n"
 "    border: none;\n"
 "}\n"
-"\n"
+"#lineEditSearch:focus {\n"
+"    border-bottom: 2px solid rgb(178, 178, 178);\n"
+"}\n"
+"#lineEditSearchFrame:focus#searchFrame {\n"
+"    border-bottom: 2px solid rgb(178, 178, 178);\n"
+"}\n"
 "#searchButtonIcon {\n"
 "    background: transparent;\n"
 "    border: none;\n"
@@ -90,19 +94,26 @@ class Ui_MainWindow(object):
 "        DETAILS FRAME  = QDockWidget\n"
 "*************************************/\n"
 "\n"
-"#dockWidgetContents,  #rightFrame {\n"
-"    background-color: #23242a;\n"
+"#dockWidgetContents,  #rightFrame, #scrollAreaWidgetContents {\n"
+"    background-color: #1e1e1e;\n"
 "}\n"
 "\n"
+"/*** \n"
+"border-color: #4c4c4c;\n"
+"*****/\n"
+"\n"
+"#labelTitle {\n"
+"    \n"
+"    font: italic 15pt \"Droid Sans Fallback\";\n"
+"}\n"
 "#scrollAreaWidgetContents {\n"
-"    background: #23242a;\n"
-"    border: 3px solid rgb(64, 66, 72);\n"
+"    border: 2px solid #4c4c4c;\n"
 "    border-bottom: none;\n"
 "    border-left: none;\n"
 "    border-right: none;\n"
 "}\n"
 "#titleFrame {\n"
-"    border: 3px solid rgb(64, 66, 72);\n"
+"    border: 2px solid #4c4c4c;\n"
 "    border-top: none;\n"
 "    border-left: none;    \n"
 "    border-right: none;\n"
@@ -110,7 +121,7 @@ class Ui_MainWindow(object):
 "\n"
 "#detailFrameOption QPushButton {\n"
 "    background: transparent;\n"
-"    border: 2px solid rgb(64, 66, 72);\n"
+"    /*border: 1px solid #4c4c4c;*/\n"
 "    border-radius: 5px;\n"
 "    color: #ffffff;\n"
 "    padding: 5px 12px;\n"
@@ -134,19 +145,22 @@ class Ui_MainWindow(object):
 "\n"
 "}\n"
 "\n"
-"#buttonCloseCard {\n"
+"/****\n"
+"    Close Card Button\n"
+"*************************/\n"
+"\n"
+"#buttonCloseCard, #buttonProcessMoreInfo {\n"
 "    border-radius: 19px;\n"
 "    background: transparent;\n"
-"    border: 1px solid rgb(64, 66, 72);\n"
-"    background-color: #23242a;\n"
+"    \n"
 "}\n"
 "\n"
-"#buttonCloseCard:hover {\n"
-"    background-color: #2f3640;\n"
+"#buttonCloseCard:hover, #buttonProcessMoreInfo:hover {\n"
+"    background-color: #3e3e3e;\n"
 "}\n"
 "\n"
-"#buttonCloseCard:pressed {\n"
-"    background-color: #23242a;\n"
+"#buttonCloseCard:pressed, #buttonProcessMoreInfo:pressed {\n"
+"    background-color: transparent;\n"
 "    padding: 3px;\n"
 "}\n"
 "\n"
@@ -155,30 +169,31 @@ class Ui_MainWindow(object):
 "**************************/\n"
 "\n"
 "#leftMenuFrame {\n"
-"    background-color: #151419;\n"
+"    background-color: #303030;\n"
 "    border-radius: 12px;\n"
-"    border: 2px solid #151419;\n"
+"    border: 1px solid #202020;\n"
+"    padding: 0px 5px;\n"
 "}\n"
 "\n"
 "#leftMenuFrame QPushButton {\n"
 "    background-color: transparent;\n"
-"    padding: 12px;\n"
+"    padding: 10px;\n"
 "    color: #ffffff;\n"
 "    border: none;\n"
-"    border-radius: 13px;\n"
+"    border-radius: 7px;\n"
 "    text-align: left;\n"
 "}\n"
 "\n"
 "#leftMenuFrame QPushButton:hover {\n"
-"    background-color: #0f0e13;\n"
+"    background-color: #3e3e3e;\n"
 "}\n"
 "\n"
 "#leftMenuFrame QPushButton:pressed {\n"
-"    background-color: #151419;\n"
+"    background-color: transparent;\n"
 "}\n"
 "\n"
 "#leftMenuFrame QPushButton:checked {\n"
-"    background-color: #0f0e13;\n"
+"    background-color: #454545;\n"
 "}\n"
 "\n"
 "#leftMenuFrame #buttonUsername {\n"
@@ -191,7 +206,7 @@ class Ui_MainWindow(object):
 "/*----------------> QComboBox <---------------------*/\n"
 "\n"
 "QComboBox {\n"
-"    font: 87 12pt \"Roboto\";\n"
+"    font: italic 12pt \"Droid Sans Fallback\";\n"
 "    background-color: transparent;\n"
 "    color: #ffffff;\n"
 "    border-radius: 5px;\n"
@@ -219,7 +234,7 @@ class Ui_MainWindow(object):
 "\n"
 "QComboBox QAbstractItemView {\n"
 "    color: #4b7bec; /*rgb(255, 121, 198);    */\n"
-"    background-color: #0f0e13;\n"
+"    background-color: transparent;\n"
 "    padding: 10px 7px;\n"
 "    selection-background-color: rgb(39, 44, 54);\n"
 "    border: 2px solid rgb(64, 71, 88);\n"
@@ -231,27 +246,29 @@ class Ui_MainWindow(object):
 "    padding: 12px;\n"
 "}\n"
 "\n"
-"/*----------------> QTableWidget <---------------------*/\n"
+"/***************\n"
+"         QTableWidget \n"
+"********************************/\n"
 "\n"
 "QTableWidget {\n"
 "    background-color: transparent;\n"
-"    selection-color: #eeeeee;\n"
+"    selection-color: #434343;\n"
 "    color: #eeeeee;\n"
-"    gridline-color: #2c2d33;\n"
+"    gridline-color: #323232;\n"
 "    border-radius: 2;\n"
-"    font: italic 12pt \"Droid Sans Fallback\";\n"
+"    font: 12pt \"Droid Sans Fallback\";\n"
 "}\n"
 "\n"
 "QTableWidget::item {\n"
 "    color: #eeeeee;\n"
-"    /*padding: 6 0 6 -10;*/\n"
+"    padding: 6 0 6 -10;\n"
 "    padding-left: 5px;\n"
 "    padding-right: 5px;\n"
 "    background-color: transparent;\n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
-"    background-color: #263848;\n"
+"    background-color: #3d3d3d;\n"
 "}\n"
 "\n"
 "QHeaderView::section {\n"
@@ -265,11 +282,11 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QHeaderView::up-arrow {\n"
-"    image: url(:(:/icons/icurlons/cil-arrow-top.png));\n"
+"    image: url(:(:/icons/icons/cil-arrow-top.png));\n"
 "}\n"
 "\n"
 "QHeaderView::down-arrow {\n"
-"    image: url(:/icons/icurlons/cil-arrow-bottom.png);\n"
+"    image: url(:/icons/icons/cil-arrow-bottom.png);\n"
 "}\n"
 "\n"
 "/**************** QScrollBar ****************/\n"
@@ -540,11 +557,11 @@ class Ui_MainWindow(object):
         self.lineEditSearch = QtWidgets.QLineEdit(self.searchFrame)
         self.lineEditSearch.setMinimumSize(QtCore.QSize(30, 30))
         font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(13)
+        font.setFamily("Droid Sans Fallback")
+        font.setPointSize(12)
         font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(11)
+        font.setItalic(True)
+        font.setWeight(50)
         self.lineEditSearch.setFont(font)
         self.lineEditSearch.setObjectName("lineEditSearch")
         self.horizontalLayout_4.addWidget(self.lineEditSearch)
@@ -575,11 +592,11 @@ class Ui_MainWindow(object):
         self.processByUser.setMinimumSize(QtCore.QSize(0, 0))
         self.processByUser.setMaximumSize(QtCore.QSize(350, 16777215))
         font = QtGui.QFont()
-        font.setFamily("Roboto")
+        font.setFamily("Droid Sans Fallback")
         font.setPointSize(12)
         font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(11)
+        font.setItalic(True)
+        font.setWeight(50)
         self.processByUser.setFont(font)
         self.processByUser.setObjectName("processByUser")
         self.processByUser.addItem("")
@@ -594,13 +611,37 @@ class Ui_MainWindow(object):
         self.processTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.processTableWidget.setObjectName("processTableWidget")
         self.processTableWidget.setColumnCount(3)
-        self.processTableWidget.setRowCount(0)
+        self.processTableWidget.setRowCount(6)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setVerticalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setVerticalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setVerticalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setVerticalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setVerticalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.processTableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.processTableWidget.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.processTableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setItem(0, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setItem(0, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setItem(0, 2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setItem(1, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setItem(1, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.processTableWidget.setItem(1, 2, item)
         self.processTableWidget.horizontalHeader().setDefaultSectionSize(150)
         self.processTableWidget.horizontalHeader().setHighlightSections(False)
         self.processTableWidget.horizontalHeader().setStretchLastSection(True)
@@ -651,18 +692,18 @@ class Ui_MainWindow(object):
         self.buttonCloseCard.setIconSize(QtCore.QSize(25, 25))
         self.buttonCloseCard.setObjectName("buttonCloseCard")
         self.horizontalLayout_2.addWidget(self.buttonCloseCard)
-        self.label = QtWidgets.QLabel(self.titleFrame)
+        self.labelTitle = QtWidgets.QLabel(self.titleFrame)
         font = QtGui.QFont()
         font.setFamily("Droid Sans Fallback")
-        font.setPointSize(12)
+        font.setPointSize(15)
         font.setBold(False)
         font.setItalic(True)
         font.setWeight(50)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setWordWrap(True)
-        self.label.setObjectName("label")
-        self.horizontalLayout_2.addWidget(self.label)
+        self.labelTitle.setFont(font)
+        self.labelTitle.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelTitle.setWordWrap(True)
+        self.labelTitle.setObjectName("labelTitle")
+        self.horizontalLayout_2.addWidget(self.labelTitle)
         self.verticalLayout_3.addWidget(self.titleFrame)
         self.detailFrameOption = QtWidgets.QFrame(self.rightFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
@@ -682,8 +723,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonProcessMoreInfo.sizePolicy().hasHeightForWidth())
         self.buttonProcessMoreInfo.setSizePolicy(sizePolicy)
-        self.buttonProcessMoreInfo.setMinimumSize(QtCore.QSize(52, 40))
-        self.buttonProcessMoreInfo.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonProcessMoreInfo.setMinimumSize(QtCore.QSize(0, 0))
+        self.buttonProcessMoreInfo.setMaximumSize(QtCore.QSize(42, 45))
         self.buttonProcessMoreInfo.setText("")
         self.buttonProcessMoreInfo.setIconSize(QtCore.QSize(25, 25))
         self.buttonProcessMoreInfo.setObjectName("buttonProcessMoreInfo")
@@ -696,8 +737,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonTerminate.sizePolicy().hasHeightForWidth())
         self.buttonTerminate.setSizePolicy(sizePolicy)
-        self.buttonTerminate.setMinimumSize(QtCore.QSize(30, 30))
-        self.buttonTerminate.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonTerminate.setMinimumSize(QtCore.QSize(0, 0))
+        self.buttonTerminate.setMaximumSize(QtCore.QSize(42, 45))
         self.buttonTerminate.setText("")
         self.buttonTerminate.setIconSize(QtCore.QSize(25, 25))
         self.buttonTerminate.setObjectName("buttonTerminate")
@@ -708,7 +749,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonSuspend.sizePolicy().hasHeightForWidth())
         self.buttonSuspend.setSizePolicy(sizePolicy)
-        self.buttonSuspend.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonSuspend.setMaximumSize(QtCore.QSize(42, 45))
         self.buttonSuspend.setText("")
         self.buttonSuspend.setIconSize(QtCore.QSize(25, 25))
         self.buttonSuspend.setObjectName("buttonSuspend")
@@ -719,7 +760,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buttonResume.sizePolicy().hasHeightForWidth())
         self.buttonResume.setSizePolicy(sizePolicy)
-        self.buttonResume.setMaximumSize(QtCore.QSize(52, 40))
+        self.buttonResume.setMaximumSize(QtCore.QSize(42, 45))
         self.buttonResume.setText("")
         self.buttonResume.setIconSize(QtCore.QSize(25, 25))
         self.buttonResume.setObjectName("buttonResume")
@@ -730,7 +771,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 300, 466))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 380, 473))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setContentsMargins(5, -1, 5, -1)
@@ -776,13 +817,40 @@ class Ui_MainWindow(object):
         self.processByUser.setItemText(2, _translate("MainWindow", "New Item"))
         self.processByUser.setItemText(3, _translate("MainWindow", "New Item"))
         self.processTableWidget.setSortingEnabled(True)
+        item = self.processTableWidget.verticalHeaderItem(0)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.processTableWidget.verticalHeaderItem(1)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.processTableWidget.verticalHeaderItem(2)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.processTableWidget.verticalHeaderItem(3)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.processTableWidget.verticalHeaderItem(4)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.processTableWidget.verticalHeaderItem(5)
+        item.setText(_translate("MainWindow", "New Row"))
         item = self.processTableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "PID"))
         item = self.processTableWidget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "NAM"))
         item = self.processTableWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "STATUS"))
-        self.label.setText(_translate("MainWindow", "Details"))
+        __sortingEnabled = self.processTableWidget.isSortingEnabled()
+        self.processTableWidget.setSortingEnabled(False)
+        item = self.processTableWidget.item(0, 0)
+        item.setText(_translate("MainWindow", "python"))
+        item = self.processTableWidget.item(0, 1)
+        item.setText(_translate("MainWindow", "python"))
+        item = self.processTableWidget.item(0, 2)
+        item.setText(_translate("MainWindow", "runing"))
+        item = self.processTableWidget.item(1, 0)
+        item.setText(_translate("MainWindow", "firefox"))
+        item = self.processTableWidget.item(1, 1)
+        item.setText(_translate("MainWindow", "firefox"))
+        item = self.processTableWidget.item(1, 2)
+        item.setText(_translate("MainWindow", "runing"))
+        self.processTableWidget.setSortingEnabled(__sortingEnabled)
+        self.labelTitle.setText(_translate("MainWindow", "Details"))
         self.buttonTerminate.setToolTip(_translate("MainWindow", "Terminate "))
         self.buttonTerminate.setStatusTip(_translate("MainWindow", "Terminate "))
         self.buttonSuspend.setToolTip(_translate("MainWindow", "Suspend"))

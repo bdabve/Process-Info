@@ -87,12 +87,13 @@ class Interface(QtWidgets.QMainWindow):
     def process_by_user(self):
         """Filter processes by the selected user."""
         username = self.ui.processByUser.currentText()
-        if username != 'All':
+        if username == 'All':
             processes = self.process_manager.get_all_processes()
         else:
             processes = self.process_manager.get_process_by_user(username)
 
         if processes:
+            # display in table widget
             self.display_process(processes)
         else:
             self.ui.labelError.setText(f"No processes owned by '{username}'")
